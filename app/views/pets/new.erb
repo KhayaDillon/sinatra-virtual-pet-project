@@ -1,3 +1,22 @@
-<form action="" method="post">
+<form action="/pets" method="post">
+  <fieldset>
+    <legend>Pet Info</legend>
+    <label>Name: <input type="text" name="name"></label>
+    <label>Birthdate: <input type="date" name="birthdate" max="<%= Time.now.year %>-<%= Time.now.month %>-<%= Time.now.day %>"
+    value="<%= Time.now.year %>-<%= Time.now.month %>-<%= Time.now.day %>"></label>
+    <label>Temperament: <input type="text" name="temperament" placeholder="ex. cheerful"></label>
+  </fieldset>
+  <br><br>
 
+  <fieldset>
+    <legend>Pet Appearance</legend>
+    <label>Animal Class</label>
+    <% classes = ["mammal", "bird", "fish", "reptile", "amphibian", "bug"] %>
+    <% classes.each do |c| %>
+    <label><%= c.capitalize %><input type="radio" name="animal_class" value="<%=c%>"></label>
+    <% end %>
+  </fieldset>
+  <br><br>
+
+  <input type="submit" value="Create Pet!">
 </form>

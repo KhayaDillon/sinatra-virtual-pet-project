@@ -1,5 +1,7 @@
 <form action="/signup" method="post">
-  <label>Username: <input type="text" name="username"></label>
-  <label>Password: <input type="password" name="password"></label>
+  <label>Username: <input type="text" name="username" pattern=".{3,}"
+    placeholder="at least 3 characters long" required></label>
+  <label>Password: <input type="password" name="password" pattern=".{6,}"
+    placeholder="at least 6 characters long" required></label>
   <input type="submit" value="Signup">
 </form>
