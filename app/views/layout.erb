@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Virtual Pets</title>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <% if logged_in? %>
+          <li><p>Welcome, <%=current_user.username %></p></li>
+          <li><a href="/pets/new"> Create a Virtual Pet </a></li>
+          <li><a href="/logout"> Log Out </a></li>
+        <% else %>
+          <li><a href="/signup">Sign Up</a></li>
+          <li><a href="/login">Login</a></li>
+        <%end %>
+      </ul>
+    </nav>
+
+    <section>
+      <%= yield %>
+    </section>
+
+  </body>
+</html>
