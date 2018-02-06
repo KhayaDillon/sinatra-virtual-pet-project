@@ -14,13 +14,14 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do
+    #directs to login page if user already exists
     erb :'/users/signup'
   end
 
   post '/signup' do
     user = User.create(params)
     session[:user_id] = user.id
-    redirect "/pets/#{user.slug}"
+    redirect "/users/#{user.slug}"
   end
 
   get '/login' do
@@ -31,9 +32,16 @@ class ApplicationController < Sinatra::Base
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/pets/#{user.slug}"
+      redirect "/users/#{user.slug}"
     else
       redirect to '/signup'
+    end
+  end
+
+  get '/users/:slug' do
+    if logged_in?
+      @user = current_user
+      erb :'/users/index'
     end
   end
 
@@ -45,12 +53,14 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/pets' do
-
+    pet = Pet.create(params)
+    current_user.pets << pet
+    redirect "/pets/#{pet.slug}"
   end
 
   get '/pets/:slug' do
     if logged_in?
-      @user = current_user
+      @pet = Pet.find_by_slug(params[:slug])
       erb :'/pets/index'
     end
   end

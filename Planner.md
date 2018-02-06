@@ -12,6 +12,6 @@ Create Pet Form
 -animal class (radio)
 --mammal, bird, fish, reptile, amphibian, bug
 -appendages (checkbox)
--- wings -- tail -- antennas -- gills -- second head -- trunk -- unihorn -- dihorn
+-- wings, tail, antennas, gills, second head, trunk, one horn, two horns
 -body color
 -eye color

@@ -1,0 +1,7 @@
+<h1>Your Virtual Pets</h1>
+
+<% @user.pets.all.each do |pet| %>
+  <h2>pet.name</h2>
+<% end %>
+
+<a href="/pets/new"> Create a New Pet </a>

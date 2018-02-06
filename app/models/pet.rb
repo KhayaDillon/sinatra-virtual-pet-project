@@ -1,5 +1,8 @@
 class Pet < ActiveRecord::Base
-  include Slugible::InstanceMethods
-  extend Slugible::ClassMethods
+  extend Slugible
   belongs_to :user
+
+  def slug
+    self.name.downcase.gsub(/\s/,'-')
+  end
 end
