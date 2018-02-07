@@ -77,6 +77,10 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  post '/pets/:slug/edit' do
+
+  end
+
   get '/logout' do
     if logged_in?
       session.clear
