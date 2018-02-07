@@ -72,15 +72,28 @@ class ApplicationController < Sinatra::Base
 
   get '/pets/:slug/edit' do
     if logged_in?
-      @pet = Pet.find_by_slug(params[:slug])
+      @pet = Pet.find(params[:id])
       erb :'/pets/edit'
     end
   end
 
-  patch '/pets/:id' do
+  post '/pets/:id' do
     pet = Pet.find(params[:id])
     pet.update(params)
     redirect "/pets/#{pet.slug}"
+  end
+
+  get '/pets/:slug/delete' do
+    if logged_in?
+      @pet = Pet.find_by_slug(params[:slug])
+      erb :'/pets/delete'
+    end
+  end
+
+  delete '/pets/:id/delete' do
+    pet = Pet.find(params[:id])
+    pet.delete
+    redirect "/users/current_user.slug"
   end
 
   get '/logout' do

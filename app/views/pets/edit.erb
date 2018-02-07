@@ -1,6 +1,6 @@
 <h1>Modify Your Pet!</h1>
 <form action="/pets/<%=@pet.id%>" method="post">
-  <input id="hidden" type="hidden" name="_method" value="patch">
+  <!-- <input id="hidden" type="hidden" name="_method" value="patch"> -->
   <fieldset>
     <legend>Pet Info</legend>
     <label>Name: <input type="text" name="name" value="<%=@pet.name.capitalize%>"></label>
