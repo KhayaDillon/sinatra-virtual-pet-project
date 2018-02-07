@@ -77,8 +77,10 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  post '/pets/:slug/edit' do
-
+  patch '/pets/:id' do
+    pet = Pet.find(params[:id])
+    pet.update(params)
+    redirect "/pets/#{pet.slug}"
   end
 
   get '/logout' do

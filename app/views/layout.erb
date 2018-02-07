@@ -7,7 +7,7 @@
     <nav>
       <ul>
         <% if logged_in? %>
-          <h3>Welcome, <%=current_user.username %></h3>
+          <h3>Welcome, <%=current_user.username.capitalize %></h3>
           <li><a href="/"> Home </a></li>
           <li><a href="/users/<%= current_user.slug %>"> Profile </a></li>
           <li><a href="/logout"> Log Out </a></li>

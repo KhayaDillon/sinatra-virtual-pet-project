@@ -1,10 +1,11 @@
 <h1>Modify Your Pet!</h1>
-<form action="/pets/<%=@pet.slug=%>" method="post">
+<form action="/pets/<%=@pet.id%>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
   <fieldset>
     <legend>Pet Info</legend>
-    <label>Name: <input type="text" name="name" value="<%=@pet.name%>"></label>
+    <label>Name: <input type="text" name="name" value="<%=@pet.name.capitalize%>"></label>
     <label>Birthdate: <input type="date" name="birthdate" value="<%=@pet.birthdate%>"></label>
-    <label>Temperment: <input type="text" name="temperment" value="<%=@pet.temperment%>"></label>
+    <label>Temperment: <input type="text" name="temperment" value="<%=@pet.temperment.capitalize%>"></label>
   </fieldset>
   <br><br>
 
@@ -26,10 +27,10 @@
     <% end %>
     <br><br>
 
-    <label>Body Color: <input type="text" name="body_color" value="<%=@pet.body_color%>"></label>
-    <label>Eye Color: <input type="text" name="eye_color" value="<%=@pet.eye_color%>"></label>
+    <label>Body Color: <input type="text" name="body_color" value="<%=@pet.body_color.capitalize%>"></label>
+    <label>Eye Color: <input type="text" name="eye_color" value="<%=@pet.eye_color.capitalize%>"></label>
   </fieldset>
   <br><br>
 
-  <input type="submit" value="Edit">
+  <input type="submit" value="Modify">
 </form>
