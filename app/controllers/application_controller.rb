@@ -34,14 +34,14 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = user.id
       redirect "/users/#{user.slug}"
     else
-      redirect to '/signup'
+      redirect '/signup'
     end
   end
 
   get '/users/:slug' do
     if logged_in?
       @user = current_user
-      erb :'/users/index'
+      erb :'/users/show'
     end
   end
 
@@ -53,15 +53,34 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/pets' do
-    pet = Pet.create(params)
-    current_user.pets << pet
-    redirect "/pets/#{pet.slug}"
+    if current_user.pets.any? { |pet| pet.name == params[:name] }
+      #add error message
+      redirect '/pets/new'
+    else
+      pet = Pet.create(params)
+      current_user.pets << pet
+      redirect "/pets/#{pet.slug}"
+    end
   end
 
   get '/pets/:slug' do
     if logged_in?
       @pet = Pet.find_by_slug(params[:slug])
-      erb :'/pets/index'
+      erb :'/pets/show'
+    end
+  end
+
+  get '/pets/:slug/edit' do
+    if logged_in?
+      @pet = Pet.find_by_slug(params[:slug])
+      erb :'/pets/edit'
+    end
+  end
+
+  get '/logout' do
+    if logged_in?
+      session.clear
+      redirect '/'
     end
   end
 

@@ -12,14 +12,14 @@
   <fieldset>
     <legend>Pet Appearance</legend>
     <label>Animal Class: </label>
-    <% classes = ["mammal", "bird", "fish", "reptile", "amphibian", "bug"] %>
+    <% classes = ["Mammal", "Bird", "Fish", "Reptile", "Amphibian", "Bug"] %>
     <% classes.each do |c| %>
     <label><%= c.capitalize %><input type="radio" name="animal_class" value="<%=c%>" required></label>
     <% end %>
     <br><br>
 
     <label>Appendages: </label>
-    <% appendages = ["wings", "tail", "antennas", "spikes", "second head", "trunk", "one horn", "two horns"] %>
+    <% appendages = ["Wings", "Tail", "Antennas", "Spikes", "Second Head", "Trunk", "One Horn", "Two Horns"] %>
     <% appendages.each do |a| %>
     <label><%= a.capitalize %><input type="radio" name="apendages" value="<%=a%>" required></label>
     <% end %>

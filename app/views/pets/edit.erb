@@ -1,0 +1,35 @@
+<h1>Modify Your Pet!</h1>
+<form action="/pets/<%=@pet.slug=%>" method="post">
+  <fieldset>
+    <legend>Pet Info</legend>
+    <label>Name: <input type="text" name="name" value="<%=@pet.name%>"></label>
+    <label>Birthdate: <input type="date" name="birthdate" value="<%=@pet.birthdate%>"></label>
+    <label>Temperment: <input type="text" name="temperment" value="<%=@pet.temperment%>"></label>
+  </fieldset>
+  <br><br>
+
+  <fieldset>
+    <legend>Pet Appearance</legend>
+    <label>Animal Class: </label>
+    <% classes = ["Mammal", "Bird", "Fish", "Reptile", "Amphibian", "Bug"] %>
+    <% classes.each do |c| %>
+    <label><%= c.capitalize %><input type="radio" name="animal_class" value="<%=c%>"
+      <%= 'checked' if @pet.animal_class == c %>></label>
+    <% end %>
+    <br><br>
+
+    <label>Appendages: </label>
+    <% appendages = ["Wings", "Tail", "Antennas", "Spikes", "Second Head", "Trunk", "One Horn", "Two Horns"] %>
+    <% appendages.each do |a| %>
+    <label><%= a.capitalize %><input type="radio" name="apendages" value="<%=a%>"
+      <%= 'checked' if @pet.apendages == a %>></label>
+    <% end %>
+    <br><br>
+
+    <label>Body Color: <input type="text" name="body_color" value="<%=@pet.body_color%>"></label>
+    <label>Eye Color: <input type="text" name="eye_color" value="<%=@pet.eye_color%>"></label>
+  </fieldset>
+  <br><br>
+
+  <input type="submit" value="Edit">
+</form>

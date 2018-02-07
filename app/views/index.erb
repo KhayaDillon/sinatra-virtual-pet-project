@@ -2,5 +2,5 @@
 <h1>Welcome to Virtual Pets!</h1>
 
 <% Pet.all.each do |instance| %>
-  <h2>instance.name</h2>
+  <h3><%=instance.name.capitalize%></h3>
 <% end %>
