@@ -87,9 +87,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/pets/:slug/edit' do
-    if logged_in?
-      @pet = Pet.find(params[:id])
+    @pet = Pet.find_by_slug(params[:slug])
+    if logged_in? && @pet.user == current_user
       erb :'/pets/edit'
+    else
+      redirect '/'
     end
   end
 
@@ -100,9 +102,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/pets/:slug/delete' do
-    if logged_in?
-      @pet = Pet.find_by_slug(params[:slug])
+    @pet = Pet.find_by_slug(params[:slug])
+    if logged_in? && @pet.user == current_user
       erb :'/pets/delete'
+    else
+      redirect '/'
     end
   end
 
