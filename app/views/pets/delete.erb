@@ -1,6 +1,6 @@
 <h2>Are you sure you want to disown <%=@pet.name.capitalize%>?</h2>
 
-<form action="/pets/<%=@pet.id/delete%>" method="post">
+<form action="/pets/<%=@pet.id%>/delete" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="Abandon <%=@pet.name.capitalize%>">
 </form>

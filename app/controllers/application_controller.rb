@@ -1,4 +1,5 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -6,6 +7,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
+    use Rack::Flash
     set :session_secret, "password_security"
   end
 
@@ -19,9 +21,14 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
-    user = User.create(params)
-    session[:user_id] = user.id
-    redirect "/users/#{user.slug}"
+    if User.find_by(username: params[:username])
+      flash[:message] = "Username already taken. Please try a different one."
+      redirect '/signup'
+    else
+      user = User.create(params)
+      session[:user_id] = user.id
+      redirect "/users/#{user.slug}"
+    end
   end
 
   get '/login' do
@@ -93,7 +100,7 @@ class ApplicationController < Sinatra::Base
   delete '/pets/:id/delete' do
     pet = Pet.find(params[:id])
     pet.delete
-    redirect "/users/current_user.slug"
+    redirect "/users/#{current_user.slug}"
   end
 
   get '/logout' do
