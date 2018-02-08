@@ -16,8 +16,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do
-    #directs to login page if user already exists
-    erb :'/users/signup'
+    if logged_in?
+      redirect '/'
+    else
+      erb :'/users/signup'
+    end
   end
 
   post '/signup' do
@@ -32,7 +35,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/login' do
-    erb :'/users/login'
+    if logged_in?
+      redirect '/'
+    else
+      erb :'/users/login'
+    end
   end
 
   post '/login' do
@@ -46,9 +53,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users/:slug' do
-    if logged_in?
+    if logged_in? && current_user.slug == params[:slug]
       @user = current_user
       erb :'/users/show'
+    else
+      redirect '/'
     end
   end
 
@@ -61,7 +70,7 @@ class ApplicationController < Sinatra::Base
 
   post '/pets' do
     if current_user.pets.any? { |pet| pet.name == params[:name] }
-      #add error message
+      flash[:message] = "Name already taken. Please try a different one."
       redirect '/pets/new'
     else
       pet = Pet.create(params)

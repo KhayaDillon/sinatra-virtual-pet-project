@@ -1,3 +1,8 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+<br><br>
+
 <h1>Create A Pet!</h1>
 <form action="/pets" method="post">
   <fieldset>
