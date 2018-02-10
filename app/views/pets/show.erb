@@ -17,7 +17,7 @@
 </dl>
 <br><br>
 
-<% current_user.pets.include?(@pet) %>
+<% if current_user.pets.include?(@pet) %>
   <a href="/pets/<%=@pet.slug%>/edit">Modify <%=@pet.name.capitalize%></a>
   <a href="/pets/<%=@pet.slug%>/delete">Abandon <%=@pet.name.capitalize%></a>
 <% end %>
