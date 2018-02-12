@@ -12,7 +12,7 @@ class PetsController < ApplicationController
   end
 
   post '/pets' do
-    if current_user.pets.any? { |pet| pet.name == params[:name] }
+    if Pet.all.any? { |pet| pet.name == params[:name] }
       flash[:message] = "Name already taken. Please try a different one."
       redirect '/pets/new'
     else
