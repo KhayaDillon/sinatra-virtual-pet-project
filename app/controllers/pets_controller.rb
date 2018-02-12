@@ -1,5 +1,9 @@
 class PetsController < ApplicationController
 
+  configure do
+    use Rack::MethodOverride
+  end
+
   get '/pets/new' do
     if logged_in?
       @user = current_user

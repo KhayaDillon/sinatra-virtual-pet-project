@@ -1,6 +1,8 @@
 
 <h1>Welcome to Virtual Pets!</h1>
+<br><br>
 
+<h2>Featured Pets</h2>
 <% Pet.all.each do |instance| %>
   <a href="/pets/<%=instance.slug%>"><h3><%=instance.name.capitalize%></h3></a>
   <p>Owner: <%=instance.user.username.capitalize%></p>
