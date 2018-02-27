@@ -5,4 +5,8 @@ class Pet < ActiveRecord::Base
   def slug
     self.name.downcase.gsub(/\s/,'-')
   end
+
+  def owner
+    self.user.capitalized_name
+  end
 end

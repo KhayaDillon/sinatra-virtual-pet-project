@@ -15,9 +15,8 @@ class PetsController < ApplicationController
     if Pet.all.any? { |pet| pet.name == params[:name] }
       flash[:message] = "Name already taken. Please try a different one."
       redirect '/pets/new'
-    else
-      pet = Pet.create(params)
-      current_user.pets << pet
+    else #build
+      pet = current_user.pets.create(params)
       redirect "/pets/#{pet.slug}"
     end
   end

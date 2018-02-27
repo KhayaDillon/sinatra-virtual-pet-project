@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
   def slug
     self.username.downcase.gsub(/\s/,'-')
   end
+
+  def capitalized_name
+    self.username.capitalize
+  end
 end
